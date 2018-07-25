@@ -1,1 +1,1 @@
-FROM strach
+FROM scratch
