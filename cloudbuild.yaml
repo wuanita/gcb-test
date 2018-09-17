@@ -1,14 +1,4 @@
 steps:
 - name: gcr.io/cloud-builders/docker
   args: ["build", "."]
-- name: gcr.io/cloud-builders/docker
-  args: ["system", "prune", "--force"]
-- name: gcr.io/cloud-builders/docker
-  args: ["build", "."]
-- name: gcr.io/cloud-builders/docker
-  args: ["system", "prune", "--force"]
-- name: gcr.io/cloud-builders/docker
-  args: ["build", "."]
-- name: gcr.io/cloud-builders/docker
-  args: ["version"]
-
+  env: ["KEY=value"]
