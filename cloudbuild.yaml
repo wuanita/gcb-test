@@ -2,3 +2,5 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: ["build", "."]
   env: ["KEY=value"]
+options:
+  env: ["KEY=value", "KEY2=value2"]
