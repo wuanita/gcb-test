@@ -3,20 +3,20 @@ steps:
   args:
   - build
   - -t
-  - &image_name gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
+  - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
   - .
 - name: gcr.io/cloud-builders/docker
   args:
   - push
-  - *image_name
+  - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
 - name: gcr.io/cloud-builders/kubectl
   args:
   - set
   - image
   - deployment/gcb-test
-  - *image_name
+  - gcb-test=gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
   env:
   - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
   - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
 images:
-- *image_name
+- gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
