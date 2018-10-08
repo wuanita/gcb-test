@@ -1,3 +1,4 @@
-FROM alpine
+FROM nginx:alpine
 
-COPY README.md /
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
