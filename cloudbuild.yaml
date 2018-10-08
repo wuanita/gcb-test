@@ -1,6 +1,6 @@
 steps:
 - name: gcr.io/cloud-builders/docker
-  args: ["build", "."]
-  env: ["KEY=value"]
+  args: ["build", "-t", "${IMAGE_NAME}", "."]
 options:
-  env: ["KEY=value", "KEY2=value2"]
+  env:
+  - "IMAGE_NAME=gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
