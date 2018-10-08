@@ -10,8 +10,8 @@ steps:
   - push
   - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
 - name: gcr.io/cloud-builders/kubectl
+  entrypoint: "/bin/bash"
   args:
-  - 'bash'
   - '-c'
   - |
     kubectl set image deployment/gcb-test \
