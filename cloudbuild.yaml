@@ -11,10 +11,11 @@ steps:
   - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
 - name: gcr.io/cloud-builders/kubectl
   args:
-  - set
-  - image
-  - deployment/gcb-test
-  - gcb-test=gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
+  - 'bash'
+  - '-c'
+  - |
+    kubectl set image deployment/gcb-test \
+        gcb-test=$(docker inspect --format='{{index .RepoDigests 0}}' gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA)
   env:
   - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
   - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
