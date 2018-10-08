@@ -1,3 +1,10 @@
 steps:
 - name: gcr.io/k8s-skaffold/skaffold:v0.15.1
-  args: ["skaffold", "run"]
+  args:
+    - bash
+    - -c
+    - |
+      gcloud container clusters get-credentials cluster --zone us-central1-a --project philde-testing-2
+  env:
+  - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
+  - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
