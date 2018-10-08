@@ -1,22 +1,3 @@
 steps:
-- name: gcr.io/cloud-builders/docker
-  args:
-  - "build"
-  - "-t"
-  - "gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-  - "."
-- name: gcr.io/cloud-builders/docker
-  args:
-  - "push"
-  - "gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-- name: gcr.io/cloud-builders/kubectl
-  args:
-  - "set"
-  - "image"
-  - "deployment/gcb-test"
-  - "gcb-test=gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-  env:
-  - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
-  - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
-images:
-- gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
+- name: gcr.io/k8s-skaffold/skaffold:v0.11.0
+  args: ["run"]
