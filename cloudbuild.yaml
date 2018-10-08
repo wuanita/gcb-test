@@ -6,6 +6,3 @@ steps:
     - |
       gcloud container clusters get-credentials cluster --zone us-central1-a --project philde-testing-2
       skaffold run
-  env:
-  - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
-  - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
