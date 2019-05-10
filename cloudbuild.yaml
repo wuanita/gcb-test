@@ -1,8 +1,44 @@
 steps:
-- name: gcr.io/k8s-skaffold/skaffold:v0.15.1
+# Run kubectl get nodes to cache a gcloud credential in ~/.kube/config
+# Later steps won't need gcloud to communicate with GKE. This is a hack,
+# it relies on the auth token to be valid for the duration of the build.
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Authentication
+  args: ['get', 'nodes']
+  env:
+  - 'KUBECONFIG=/workspace/.kubeconfig'
+  - 'CLOUDSDK_COMPUTE_ZONE=$_GKE_ZONE'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=$_GKE_CLUSTER'
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Configuration
+  entrypoint: 'sh'
   args:
-    - bash
-    - -c
+    - "-c"
     - |
-      gcloud container clusters get-credentials cluster --zone us-central1-a --project philde-testing-2
-      skaffold run
+      cat >skaffold.yaml <<EOF
+      apiVersion: skaffold/v1beta8
+      kind: Config
+      build:
+        artifacts:
+        - image: $_IMAGE_NAME
+          context: .$_DOCKERFILE_PATH
+        tagPolicy:
+          sha256: {}
+      deploy:
+        kubectl:
+          manifests:
+          - .$_K8S_YAML_PATH
+      EOF
+- name: 'gcr.io/k8s-skaffold/skaffold:latest'
+  id: Build & deploy
+  args: ['skaffold', 'run', '-f', 'skaffold.yaml', '--label', 'managed-by=gcp-cloud-build', '--label', 'gcb-build-id=$BUILD_ID']
+  env:
+  - 'KUBECONFIG=/workspace/.kubeconfig'
+images:
+- $_IMAGE_NAME
+substitutions:
+  _IMAGE_NAME: gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test
+  _GKE_CLUSTER: cluster
+  _GKE_ZONE: us-central1-a
+  _K8S_YAML_PATH: /k8s-deployment.yaml
+  _DOCKERFILE_PATH: /
