@@ -20,4 +20,4 @@ steps:
   - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
 images:
 - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
-tags: ["tag1", "tag2"]
+tags: ["tag1"]
