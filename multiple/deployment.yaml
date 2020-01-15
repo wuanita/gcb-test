@@ -21,7 +21,7 @@ spec:
         app: nginx-6
     spec:
       containers:
-        - image: 'gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test'
+        - image: 'gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$COMMIT_SHA'
           imagePullPolicy: IfNotPresent
           name: gcb-test
 ---
