@@ -1,25 +1,5 @@
 steps:
-- name: gcr.io/cloud-builders/docker
-  args:
-  - "build"
-  - "-t"
-  - "gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-  - "."
-- name: gcr.io/cloud-builders/docker
-  args:
-  - "push"
-  - "gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-- name: gcr.io/cloud-builders/kubectl
-  args:
-  - "set"
-  - "image"
-  - "deployment/gcb-test"
-  - "gcb-test=gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA"
-  env:
-  - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
-  - "CLOUDSDK_CONTAINER_CLUSTER=cluster"
-images:
-- gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
-tags: ["tag2"]
+- name: 'bash'
+  args: ['echo', 'I am running in a custom workers pool!']
 options:
   workerPool: 'anita-test-265821/pool'
