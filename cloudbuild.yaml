@@ -21,3 +21,5 @@ steps:
 images:
 - gcr.io/philde-testing-2/github.com/pdeslaur/gcb-test:$SHORT_SHA
 tags: ["tag2"]
+options:
+  workerPool: 'anita-test-265821/pool'
