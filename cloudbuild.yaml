@@ -2,4 +2,4 @@ steps:
 - name: 'bash'
   args: ['echo', 'I am running in a custom workers pool!']
 options:
-  workerPool: 'anita-test-265821/pool'
+  workerPool: 'notaproject/pool'
