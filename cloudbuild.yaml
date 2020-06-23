@@ -3,3 +3,4 @@ steps:
   args: ['echo', 'I am running in a custom workers pool!']
 options:
   workerPool: 'projects/anita-test-265821/locations/us-central1/workerPools/workerpoolid'
+logsBucket: gs://testbucketforgcl
