@@ -2,5 +2,5 @@ steps:
 - name: 'bash'
   args: ['echo', 'I am running in a custom workers pool!']
 options:
-  workerPool: 'projects/anita-test-265821/locations/us-central1/workerPools/workerpoolid'
+  workerPool: 'projects/anita-test-265821/locations/us-central1/workerPools/poolid'
 logsBucket: gs://testbucketforgcl
