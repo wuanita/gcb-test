@@ -1,4 +1,4 @@
 # gcb-test
-knjknjklk
+knjknj
 Simple testing repository.
 
