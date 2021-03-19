@@ -1,4 +1,4 @@
 steps:
 - name: 'bash'
-  args: ['echo', 'I am not running in a custom workers poold!']
+  args: ['echo', 'I am not running in a custom workers pool!']
 logsBucket: gs://testbucketforgcl
