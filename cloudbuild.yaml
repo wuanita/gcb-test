@@ -10,4 +10,4 @@ steps:
   entrypoint: gcloud
   args: ['run', 'deploy', 'asdfds', '--image', 'gcr.io/anita-test-265821/new', '--region', 'us-central1']
 images:
-- gcr.io/anita-test-265821/asdfds
+- gcr.io/anita-test-265821/new
