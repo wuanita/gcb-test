@@ -8,6 +8,6 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'asdfds', '--image', 'gcr.io/anita-test-265821/new', '--region', 'global']
+  args: ['run', 'deploy', 'asdfds', '--image', 'gcr.io/anita-test-265821/new', '--region', 'us-central1']
 images:
 - gcr.io/anita-test-265821/asdfds
