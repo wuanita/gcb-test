@@ -1,13 +1,13 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/anita-test-265821/new', '.']
+  args: ['build', '-t', 'gcr.io/anita-test-265821/asdfds', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/anita-test-265821/new']
+  args: ['push', 'gcr.io/anita-test-265821/asdfds']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args: ['run', 'deploy', 'asdfds', '--image', 'gcr.io/anita-test-265821/new', '--region', 'global']
 images:
-- gcr.io/anita-test-265821/new
+- gcr.io/anita-test-265821/asdfds
